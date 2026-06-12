@@ -1,194 +1,262 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- แก้ไขส่วนแท็บบาร์เรียบร้อยแล้ว -->
-  <title>calltaxithailand</title>
-  
-  <meta name="description" content="ThaiRide Travel บริการรถรับส่งสนามบิน รถเช่าพร้อมคนขับ รถตู้ VIP, SUV, Sedan นำเที่ยวทั่วไทย บริการสุภาพ ปลอดภัย 24 ชั่วโมง">
-  <meta name="keywords" content="รถรับจ้าง, รถตู้ VIP, รถรับส่งสนามบิน, เช่ารถพร้อมคนขับ, ThaiRide Travel, เที่ยวไทย, สุวรรณภูมิ, ดอนเมือง">
-  <meta name="author" content="ThaiRide Travel">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calling Taxi - บริการเรียกแท็กซี่ 24 ชั่วโมง</title>
+    <!-- นำเข้า Font สวยๆ จาก Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; max-width: 100vw; overflow-x: hidden !important; background: #121212; color: #eeeeee; font-family: 'Sarabun', sans-serif; }
-    
-    .navbar { width: 100%; background: #0a2c6d; padding: 15px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 1000; }
-    .navbar img { width: 35px; border-radius: 50%; }
-    .navbar h1 { font-size: 18px; font-family: 'Prompt'; color: white; }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
 
-    /* --- ส่วนที่แก้ไข: Hero Slider --- */
-    .hero-container { 
-      width: 100%; 
-      height: 300px; /* กำหนดความสูงให้คงที่เพื่อให้ดูเนียนตา */
-      background: #000; 
-      position: relative; 
-      overflow: hidden; 
-    }
-    .slide { 
-      width: 100%; 
-      height: 100%;
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      opacity: 0; 
-      transition: opacity 1s ease-in-out; /* เพิ่มความนุ่มนวลตอนเปลี่ยนภาพ */
-    }
-    .slide.active { opacity: 1; }
-    .slide img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover; 
-    }
-    /* ------------------------------ */
+        /* Header / Navigation */
+        header {
+            background-color: #fbc02d; /* สีเหลืองแท็กซี่ */
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-    .container { padding: 15px; width: 100%; }
-    .card { background: #1e1e1e; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-left: 4px solid #0a2c6d; }
-    .card h2 { color: #4dabff; font-family: 'Prompt'; margin-bottom: 10px; font-size: 20px; }
-    .card p { font-size: 14px; line-height: 1.6; color: #ccc; }
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            text-decoration: none;
+        }
 
-    .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-    .service-item { background: #2a2a2a; padding: 15px; border-radius: 8px; text-align: center; }
-    .service-item i { font-size: 24px; color: #4dabff; display: block; margin-bottom: 5px; }
+        .logo span {
+            color: #fff;
+            background: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
 
-    .bottom-section { width: 100%; padding: 0 15px 20px; }
-    .dashboard { display: flex; gap: 10px; margin-bottom: 20px; }
-    .stat-box { flex: 1; background: #1e1e1e; padding: 12px 5px; border-radius: 10px; text-align: center; border-bottom: 3px solid #0a2c6d; }
-    .stat-box span { font-size: 11px; color: #888; display: block; margin-bottom: 2px; }
-    .stat-box strong { font-size: 15px; color: #fff; }
+        nav a {
+            color: #000;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 400;
+        }
 
-    .line-btn { background: #06c755; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 15px; border-radius: 50px; font-weight: bold; margin-top: 20px; font-family: 'Prompt'; transition: 0.3s; }
-    .line-btn:hover { background: #05a346; transform: scale(1.02); }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1494959764136-6be9eb3c261e?auto=format&fit=crop&q=80&w=1470') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
 
-    footer { background: #0a2c6d; color: white; text-align: center; padding: 40px 20px; width: 100%; }
-    footer img { width: 80px; border-radius: 50%; margin-bottom: 15px; border: 3px solid #fff; }
-    
-    .flag-counter { margin-top: 20px; background: #fff; padding: 10px; border-radius: 5px; display: inline-block; }
-  </style>
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Booking Form */
+        .booking-container {
+            max-width: 500px;
+            width: 90%;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: -50px auto 50px auto; /* ให้กล่องเหลื่อมขึ้นไปบน Hero */
+            position: relative;
+            z-index: 10;
+        }
+
+        .booking-container h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #222;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #fbc02d;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #fbc02d;
+            color: black;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #f9a825;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .feature-box {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .feature-box h3 {
+            margin-bottom: 10px;
+            color: #fbc02d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <img src="https://via.placeholder.com/100/0a2c6d/ffffff?text=TR" alt="ThaiRide Logo">
-    <h1>ThaiRide Travel</h1>
-  </nav>
+    <!-- ส่วนหัวเว็บไซต์ -->
+    <header>
+        <a href="#" class="logo">Calling<span>TAXI</span></a>
+        <nav>
+            <a href="#booking">จองรถ</a>
+            <a href="#features">บริการของเรา</a>
+            <a href="tel:021234567" style="font-weight: 600; color: #d32f2f;">📞 โทรเลย</a>
+        </nav>
+    </header>
 
-  <!-- แก้ไข: เพิ่มรูปภาพ 01-09 (เปลี่ยน URL รูปภาพตามความจริง) -->
-  <div class="hero-container" id="hero-slider">
-    <div class="slide active"><img src="images/hero_01.png" alt="ThaiRide 01"></div>
-    <div class="slide"><img src="images/hero_02.png" alt="ThaiRide 02"></div>
-    <div class="slide"><img src="images/hero_03.png" alt="ThaiRide 03"></div>
-    <div class="slide"><img src="images/hero_04.png" alt="ThaiRide 04"></div>
-    <div class="slide"><img src="images/hero_05.png" alt="ThaiRide 05"></div>
-    <div class="slide"><img src="images/hero_06.png" alt="ThaiRide 06"></div>
-    <div class="slide"><img src="images/hero_07.png" alt="ThaiRide 07"></div>
-    <div class="slide"><img src="images/hero_08.png" alt="ThaiRide 08"></div>
-    <div class="slide"><img src="images/hero_09.png" alt="ThaiRide 09"></div>
-  </div>
+    <!-- ส่วนต้อนรับ (Hero) -->
+    <section class="hero">
+        <h1>เรียกรถแท็กซี่ วางใจเรา</h1>
+        <p>บริการรวดเร็ว ปลอดภัย ราคามาตรฐาน ไปได้ทุกที่ตลอด 24 ชั่วโมง</p>
+    </section>
 
-  <div class="container">
-    <div class="card">
-      <h2>ThaiRide Travel</h2>
-      <p>เราคือผู้เชี่ยวชาญด้านการเดินทางในประเทศไทย ให้บริการรถรับส่งสนามบินสุวรรณภูมิ ดอนเมือง และบริการรถเห่านำเที่ยวทั่วประเทศ ด้วยรถยนต์หลากหลายประเภทที่ตอบโจทย์ทุกการเดินทางของคุณ</p>
-      
-      <a href="https://lin.ee/77ixmf5" class="line-btn">
-        จองรถผ่าน LINE คลิกเลย!
-      </a>
+    <!-- ฟอร์มจองรถ -->
+    <div class="booking-container" id="booking">
+        <h2>🚕 จองรถแท็กซี่ออนไลน์</h2>
+        <form id="taxiForm" onsubmit="bookTaxi(event)">
+            <div class="form-group">
+                <label for="pickup">จุดรับผู้โดยสาร</label>
+                <input type="text" id="pickup" placeholder="ระบุสถานที่รับ หรือที่อยู่ของคุณ" required>
+            </div>
+            <div class="form-group">
+                <label for="dropoff">จุดหมายปลายทาง</label>
+                <input type="text" id="dropoff" placeholder="ระบุสถานที่ปลายทาง" required>
+            </div>
+            <div class="form-group">
+                <label for="car-type">ประเภทรถที่ต้องการ</label>
+                <select id="car-type">
+                    <th:option value="standard">แท็กซี่ทั่วไป (4 ที่นั่ง)</th:option>
+                    <th:option value="large">แท็กซี่คันใหญ่ (7 ที่นั่ง)</th:option>
+                    <th:option value="premium">รถพรีเมียม / VIP</th:option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์ติดต่อ</label>
+                <input type="tel" id="phone" placeholder="ตัวอย่าง: 0812345678" required pattern="[0-9]{9,10}">
+            </div>
+            <button type="submit" class="btn-submit">เรียกรถตอนนี้</button>
+        </form>
     </div>
 
-    <div class="card">
-      <h2>ประเภทรถที่ให้บริการ</h2>
-      <div class="service-grid">
-        <div class="service-item">
-          <strong>Sedan</strong>
-          <p style="font-size: 11px;">1-3 ท่าน</p>
+    <!-- ส่วนจุดเด่นบริการ -->
+    <section class="features" id="features">
+        <div class="feature-box">
+            <h3>⏱️ มาถึงไว</h3>
+            <p>มีเครือข่ายรถแท็กซี่กระจายอยู่ทั่วทุกพื้นที่ พร้อมไปรับคุณภายใน 15 นาที</p>
         </div>
-        <div class="service-item">
-          <strong>SUV</strong>
-          <p style="font-size: 11px;">4-5 ท่าน</p>
+        <div class="feature-box">
+            <h3>💰 ราคาเป็นธรรม</h3>
+            <p>คิดราคาตามมิเตอร์มาตรฐาน หรือราคาเหมาจ่ายตามที่ตกลงกัน ไม่มีบวกเพิ่มหน้างาน</p>
         </div>
-        <div class="service-item">
-          <strong>VIP Van</strong>
-          <p style="font-size: 11px;">9-12 ท่าน</p>
+        <div class="feature-box">
+            <h3>🛡️ ปลอดภัย 100%</h3>
+            <p>คนขับทุกคนผ่านการตรวจสอบประวัติอาชญากรรม และได้รับการอบรมบริการอย่างดี</p>
         </div>
-        <div class="service-item">
-          <strong>Private Car</strong>
-          <p style="font-size: 11px;">ส่วนตัว</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>ทำไมต้องเลือกเรา?</h2>
-      <ul style="list-style: none; font-size: 14px; color: #ccc;">
-        <li style="margin-bottom: 10px;">✅ คนขับสุภาพ ผ่านการตรวจสอบประวัติ</li>
-        <li style="margin-bottom: 10px;">✅ รถสะอาด บำรุงรักษาตามระยะ</li>
-        <li style="margin-bottom: 10px;">✅ ตรงต่อเวลา ถึงที่หมายปลอดภัย</li>
-        <li>✅ ราคามาตรฐาน ไม่มีบวกเพิ่มหน้างาน</li>
-      </ul>
-    </div>
-  </div>
+    <!-- ส่วนท้ายเว็บ -->
+    <footer>
+        <p>&copy; 2026 Calling Taxi Service. All rights reserved.</p>
+    </footer>
 
-  <div class="bottom-section">
-    <div class="dashboard">
-      <div class="stat-box">
-        <span>Booking</span>
-        <strong>24/7</strong>
-      </div>
-      <div class="stat-box">
-        <span>Safe Rate</span>
-        <strong>100%</strong>
-      </div>
-      <div class="stat-box">
-        <span>Experience</span>
-        <strong>10+ Yrs</strong>
-      </div>
-    </div>
-  </div>
+    <!-- ส่วนทำงานของ JavaScript สำหรับปุ่มกด -->
+    <script>
+        function bookTaxi(event) {
+            event.preventDefault(); // ป้องกันหน้าเว็บรีเฟรช
+            
+            const pickup = document.getElementById('pickup').value;
+            const dropoff = document.getElementById('dropoff').value;
+            const carType = document.getElementById('car-type').value;
+            const phone = document.getElementById('phone').value;
 
-  <footer>
-    <img src="https://via.placeholder.com/150/ffffff/0a2c6d?text=ThaiRide" alt="ThaiRide Travel">
-    <h3 style="font-family: 'Prompt';">ThaiRide Travel</h3>
-    <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">
-      Contact us via Line: @ThaiRide<br>
-      © 2026 ThaiRide Travel. All rights reserved.
-    </p>
-
-    <div class="flag-counter">
-      <a href="https://info.flagcounter.com/7vY3"><img src="https://s11.flagcounter.com/count2/7vY3/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-    </div>
-  </footer>
-
-  <script>
-    // ปรับปรุง Script สำหรับเปลี่ยนรูป 01-09
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    
-    function showSlides() {
-      // เอา class active ออกจากทุกรูป
-      slides.forEach(slide => {
-        slide.classList.remove('active');
-      });
-      
-      // เพิ่มความนุ่มนวลด้วยการเลื่อน index
-      currentSlide++;
-      if (currentSlide > totalSlides) { currentSlide = 1 }
-      
-      // แสดงรูปภาพปัจจุบัน
-      slides[currentSlide - 1].classList.add('active');
-      
-      // ตั้งเวลาเปลี่ยนภาพ (3000 = 3 วินาที)
-      setTimeout(showSlides, 3000);
-    }
-
-    // เริ่มการทำงาน
-    showSlides();
-  </script>
+            // แจ้งเตือนแบบจำลอง (ในอนาคตเชื่อมต่อหลังบ้านเพื่อบันทึกข้อมูลได้)
+            alert(`🎉 ระบบได้รับข้อมูลเรียกรถเรียบร้อยแล้ว!\n\n📍 จุดรับ: ${pickup}\n🏁 จุดส่ง: ${dropoff}\n📞 เบอร์ติดต่อ: ${phone}\n\nเจ้าหน้าที่จะติดต่อกลับภายใน 5 นาทีครับ`);
+            
+            // รีเซ็ตฟอร์ม
+            document.getElementById('taxiForm').reset();
+        }
+    </script>
 
 </body>
 </html>
