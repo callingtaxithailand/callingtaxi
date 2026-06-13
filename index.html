@@ -57,7 +57,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1494959764136-6be9eb3c261e?auto=format&fit=crop&q=80&w=1470') no-repeat center center/cover;
-            height: 45vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -81,7 +81,7 @@
         /* Main Content Container */
         .main-container {
             max-width: 1100px;
-            margin: -40px auto 50px auto;
+            margin: -40px auto 30px auto;
             padding: 0 20px;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -182,11 +182,6 @@
         .btn-phone { background-color: #d32f2f; }
         .btn-phone:hover { background-color: #b71c1c; }
 
-        .btn-line img {
-            width: 24px;
-            height: 24px;
-        }
-
         /* QR Code Layout */
         .qr-section-title {
             font-size: 14px;
@@ -233,6 +228,70 @@
             color: #777;
         }
 
+        /* --- Fleet Cars Section --- */
+        .fleet-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .fleet-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eef0f5;
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-img-wrapper {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .car-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ทำให้รูปไม่เบี้ยว แต่อัตราส่วนจะสวยงามพอดี */
+        }
+
+        .car-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .car-info h3 {
+            font-size: 18px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .car-info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
         /* Features */
         .features {
             display: flex;
@@ -277,6 +336,7 @@
         <a href="#" class="logo">Calling<span>TAXI</span></a>
         <nav>
             <a href="#booking">จองรถ</a>
+            <a href="#fleet">ประเภทรถ</a>
             <a href="tel:0852242135">📞 โทรสายด่วน</a>
         </nav>
     </header>
@@ -287,7 +347,7 @@
         <p>บริการรถรับส่ง เดินทางท่องเที่ยวทั่วไทย และบริการรถเหมา 24 ชั่วโมง</p>
     </section>
 
-    <!-- คอนเทนต์หลัก -->
+    <!-- คอนเทนต์หลัก (ฟอร์ม & ติดต่อ) -->
     <div class="main-container" id="booking">
         
         <!-- ฝั่งซ้าย: แบบฟอร์มกรอกข้อมูลเรียกแท็กซี่ -->
@@ -305,8 +365,8 @@
                 <div class="form-group">
                     <label for="car-type">ประเภทรถที่ต้องการ</label>
                     <select id="car-type">
-                        <option value="standard">รถเก๋งทั่วไป (4 ที่นั่ง)</option>
-                        <option value="large">รถคันใหญ่ / SUV (7 ที่นั่ง)</option>
+                        <option value="standard">รถเก๋งทั่วไป Altis (4 ที่นั่ง)</option>
+                        <option value="suv">รถคันใหญ่ SUV (7 ที่นั่ง)</option>
                         <option value="van">รถตู้ VIP / Van</option>
                     </select>
                 </div>
@@ -318,16 +378,14 @@
             </form>
         </div>
 
-        <!-- ฝั่งขวา: ช่องทางการติดต่อโดยตรง (อ้างอิงจากข้อมูลของคุณ) -->
+        <!-- ฝั่งขวา: ช่องทางการติดต่อโดยตรง -->
         <div class="card">
             <h2>💬 ช่องทางติดต่อตรง</h2>
             
             <div class="contact-methods">
-                <!-- ปุ่มเชื่อมต่อไปยัง LINE Official -->
                 <a href="https://lin.ee/98iQdw6" target="_blank" class="btn-contact btn-line">
-                    <img src="line_qr.png" alt="LINE"> กดเพื่อเพิ่มเพื่อนใน LINE (คลิกเลย)
+                     กดเพื่อเพิ่มเพื่อนใน LINE (คลิกเลย)
                 </a>
-                <!-- ปุ่มกดโทรด่วน -->
                 <a href="tel:0852242135" class="btn-contact btn-phone">
                     📞 โทรสายด่วน: 085-2242135
                 </a>
@@ -335,7 +393,6 @@
 
             <div class="qr-section-title">✨ หรือสแกนผ่านแอปพลิเคชัน (You have a trip I have a Car)</div>
             
-            <!-- โซนคิวอาร์โค้ดแสดงรูปตามไฟล์ของคุณ -->
             <div class="qr-grid">
                 <!-- คิวอาร์โค้ด WeChat -->
                 <div class="qr-box">
@@ -351,7 +408,47 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- --- โซนแสดงรูปรถที่ให้บริการ (Our Fleet) --- -->
+    <div class="fleet-container" id="fleet">
+        <h2 class="fleet-title">🚖 รถยนต์ที่เราเปิดให้บริการ</h2>
+        <div class="fleet-grid">
+            
+            <!-- คันที่ 1: Sedan Altis -->
+            <div class="car-card">
+                <div class="car-img-wrapper">
+                    <img src="astis.png" alt="Toyota Altis Taxi">
+                </div>
+                <div class="car-info">
+                    <h3>แท็กซี่ทั่วไป (Sedan)</h3>
+                    <p>รถยนต์ Toyota Corolla Altis หรือเทียบเท่า เหมาะสำหรับการเดินทาง 1-4 ท่าน สัมภาระขนาดมาตรฐาน</p>
+                </div>
+            </div>
+
+            <!-- คันที่ 2: SUV -->
+            <div class="car-card">
+                <div class="car-img-wrapper">
+                    <img src="suv.png" alt="SUV Car">
+                </div>
+                <div class="car-info">
+                    <h3>รถยนต์อเนกประสงค์ (SUV)</h3>
+                    <p>รถยนต์ไซส์ใหญ่ขนาด 7 ที่นั่ง นั่งสบาย พื้นที่กว้างขวาง เหมาะสำหรับกลุ่มครอบครัวหรือทริปที่มีกระเป๋าเดินทางใบใหญ่</p>
+                </div>
+            </div>
+
+            <!-- คันที่ 3: Van -->
+            <div class="car-card">
+                <div class="car-img-wrapper">
+                    <img src="van_03.png" alt="VIP Van">
+                </div>
+                <div class="car-info">
+                    <h3>รถตู้ VIP (Van)</h3>
+                    <p>รถตู้แต่ง VIP เต็มรูปแบบ สิ่งอำนวยความสะดวกครบครัน เหมาะสำหรับการเดินทางเป็นกลุ่มคณะ สัมมนา หรือท่องเที่ยวทางไกล</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- ส่วนจุดเด่นบริการ -->
@@ -375,7 +472,6 @@
         <p>&copy; 2026 Calling Taxi Service (You have a trip I have a Car). All rights reserved.</p>
     </footer>
 
-    <!-- ส่วนการทำระบบส่งข้อมูลไปที่ LINE -->
     <script>
         function bookTaxi(event) {
             event.preventDefault();
@@ -387,7 +483,6 @@
 
             alert(`🎉 รับข้อมูลเรียกรถ Calling Taxi เรียบร้อยแล้ว!\n\n📍 จุดรับ: ${pickup}\n🏁 จุดส่ง: ${dropoff}\n📞 เบอร์ติดต่อกลับของคุณ: ${phone}\n\nระบบกำลังเปิด LINE เพื่อให้คุณส่งข้อมูลและคอนเฟิร์มคิวรถกับเราครับ...`);
             
-            // เปิดลิงก์ไลน์เพื่อให้ลูกค้าแชทคุยต่อได้ทันที
             window.open('https://lin.ee/98iQdw6', '_blank');
         }
     </script>
