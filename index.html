@@ -337,4 +337,35 @@
             <p>ไม่ว่าจะไปสนามบินไฟลท์ดึก หรือเดินทางเร่งด่วน พร้อมให้บริการตลอดเวลา</p>
         </div>
         <div class="feature-box">
-            <h3>🗺️ น
+            <h3>🗺️ นำเที่ยวทั่วไทย</h3>
+            <p>บริการเหมารถไปต่างจังหวัด พาท่องเที่ยวตามแพลน มั่นใจในความปลอดภัย</p>
+        </div>
+        <div class="feature-box">
+            <h3>💼 คนขับมืออาชีพ</h3>
+            <p>คนขับชำนาญเส้นทาง สุภาพ ตรงต่อเวลา และดูแลความปลอดภัยของคุณตลอดทริป</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 You have a trip I have a Car. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function bookTaxi(event) {
+            event.preventDefault();
+            
+            const pickup = document.getElementById('pickup').value;
+            const dropoff = document.getElementById('dropoff').value;
+            const carType = document.getElementById('car-type').value;
+            const phone = document.getElementById('phone').value;
+
+            // จำลองส่งข้อมูล และนำทางลูกค้าไปที่ไลน์เพื่อส่งข้อความจองรถต่อได้ง่ายขึ้น
+            alert(`🎉 ระบบบันทึกข้อมูลเบื้องต้นเรียบร้อยแล้ว!\n\n📍 จุดรับ: ${pickup}\n🏁 จุดส่ง: ${dropoff}\n\nระบบกำลังพาท่านไปส่งข้อความยืนยันใน LINE...`);
+            
+            // เปิดหน้าไลน์ของผู้ให้บริการเพื่อให้ส่งรายละเอียดต่อได้ทันที
+            window.open('https://lin.ee/98iQdw6', '_blank');
+        }
+    </script>
+
+</body>
+</html>
