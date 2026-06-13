@@ -35,7 +35,7 @@
             </div>
         </section>
 
-        <!-- ย้าย histats_counter ตำแหน่งที่ 1 มาไว้ใต้ Hero Banner -->
+        <!-- histats_counter ตำแหน่งที่ 1 -->
         <div class="py-2 flex justify-center">
             <div id="histats_counter"></div>
         </div>
@@ -103,9 +103,12 @@
         <img src="banner728_90.jpg" class="w-full rounded-lg shadow-sm">
     </main>
 
-    <!-- ตำแหน่งที่ 2: ก่อน Footer -->
-    <div class="py-4 flex justify-center">
+    <!-- ตำแหน่งที่ 2: ก่อน Footer (รวม Histats และ Flag Counter) -->
+    <div class="py-4 flex flex-col items-center gap-4">
         <div id="histats_counter"></div>
+        <a href="https://info.flagcounter.com/fyU0">
+            <img src="https://s01.flagcounter.com/count2/fyU0/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0">
+        </a>
     </div>
 
     <footer class="bg-[#222222] text-white py-6 text-center text-sm">
@@ -133,7 +136,7 @@
         };
 
         function changeLanguage(lang) {
-            document.getElementById('heroTitle').innerText = content[lang].hero;
+            document.getElementById('heroTitle').innerHTML = content[lang].hero.replace(/\n/g, '<br>');
             document.getElementById('bookingTitle').innerText = content[lang].book;
             document.getElementById('fleet1').innerText = content[lang].fleet1;
             document.getElementById('fleet2').innerText = content[lang].fleet2;
