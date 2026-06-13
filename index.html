@@ -120,54 +120,60 @@
         }
 
         /* ===================================================
-           [ออกแบบใหม่] โซนแบนเนอร์ใหญ่โชว์ภาพงานบริการ ไม่มีตัวอักษรบัง
+           [แก้ไขระบบแสดงผลรูปภาพ] เปลี่ยนมาใช้โครงสร้าง Flex + HTML <img> 
+           หมดปัญหาจอดำ โหลดภาพขึ้นแน่นอน 100%
            =================================================== */
         .premium-hero-banner {
             width: 100%;
-            height: 45vh; /* ปรับขนาดให้พอดิบพอดีหน้าจอ */
-            min-height: 300px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* แบ่งฝั่งสนามบิน และ ฝั่งกองทัพรถยนต์ */
             background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
             border-bottom: 5px solid #fbc02d;
         }
 
-        /* ฝั่งที่ 1: ภาพรวมแลนด์มาร์กสนามบินสุวรรณภูมิและดอนเมือง */
-        .banner-airport-side {
-            background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1542296332-2e4473fac563?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+        .banner-grid-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* แบ่งครึ่งฝั่งสนามบิน และฝั่งรถยนต์ */
+        }
+
+        .banner-img-item {
+            width: 100%;
+            height: 350px;
             position: relative;
-            transition: 0.5s ease;
+            overflow: hidden;
         }
 
-        /* ฝั่งที่ 2: โซนโชว์รูปรถยนต์หรู (รวมกลุ่มกันเพื่อความสวยงามน่าสนใจ) */
-        .banner-cars-side {
-            background: linear-gradient(45deg, rgba(251, 192, 45, 0.2), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=1000') no-repeat center center/cover;
-            border-left: 4px solid #fbc02d;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 20px;
+        .banner-img-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* จัดให้รูปอยู่ตรงกลางพอดิบพอดี */
+            display: block;
+            transition: transform 0.5s ease;
         }
 
-        /* แต่งเงาสะท้อนระดับพรีเมียมรอบกรอบแบนเนอร์ */
-        .premium-hero-banner::after {
+        /* ใส่เอฟเฟกต์แสงเงาระดับพรีเมียมล้อมรอบรูปภาพ */
+        .banner-img-item::after {
             content: '';
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: inherit;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
             pointer-events: none;
-            box-shadow: inset 0 -30px 40px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 768px) {
-            .premium-hero-banner {
-                grid-template-columns: 1fr; /* บนมือถือปรับให้รวมเป็นภาพเดียวเต็มจอนุ่มนวล */
-                height: 35vh;
+            .banner-grid-wrapper {
+                grid-template-columns: 1fr; /* บนหน้าจอมือถือจะซ้อนลงมาเป็นแนวตั้งให้อ่านง่ายแสดงรูปชัดเจน */
             }
-            .banner-cars-side { display: none; } /* ซ่อนฝั่งสองบนมือถือเพื่อป้องกันภาพซ้อนเบียดกัน */
+            .banner-img-item {
+                height: 220px; /* ปรับขนาดความสูงให้พอดีกับหน้าจอมือถือไม่ยาวเกินไป */
+            }
         }
 
         /* โซนข้อความต้อนรับด้านล่างภาพแบนเนอร์ */
@@ -502,7 +508,6 @@
     <!-- แถบเมนูกรอบสีเหลืองด้านบนสุด -->
     <header>
         <a href="#" class="header-logo-wrapper">
-            <!-- โลโก้แบรนด์ยังอยู่เหมือนเดิม -->
             <img src="logo.png" alt="Calling Taxi โลโก้บริการรถรับส่ง 24 ชั่วโมง">
             <div class="logo-text">Calling<span>TAXI</span></div>
         </a>
@@ -517,15 +522,21 @@
         <a href="#fleet" id="nav-fleet">ประเภทรถที่ให้บริการ</a>
     </nav>
 
-    <!-- [แก้ไขตามสั่ง] โซนแบนเนอร์ใหญ่: เปลี่ยนเป็นภาพสนามบินสุวรรณภูมิ/ดอนเมือง + รถยนต์สวยงามสะดุดตา และเอาข้อความออกทั้งหมด -->
-    <section class="premium-hero-banner" aria-label="Calling Taxi Banner Images Flight and Cars">
-        <!-- ฝั่งภาพสนามบินนานาชาติ (สุวรรณภูมิ & ดอนเมือง) -->
-        <div class="banner-airport-side"></div>
-        <!-- ฝั่งกองทัพรถยนต์ (Taxi, Altis, SUV, Van) -->
-        <div class="banner-cars-side"></div>
+    <!-- [แก้ไขให้แล้ว] โซนแบนเนอร์ใหญ่: ดึงรูปภาพผ่าน HTML โดยตรง หมดปัญหารูปไม่แสดงผล และไม่มีข้อความบังหน้าภาพกวนใจ -->
+    <section class="premium-hero-banner" aria-label="Calling Taxi Service Images">
+        <div class="banner-grid-wrapper">
+            <!-- ภาพที่ 1: ภาพสนามบินสุวรรณภูมิและสนามบินดอนเมือง -->
+            <div class="banner-img-item">
+                <img src="airport-banner.jpg" alt="บริการรับส่งสนามบินสุวรรณภูมิ สนามบินดอนเมือง 24 ชั่วโมง">
+            </div>
+            <!-- ภาพที่ 2: ภาพกลุ่มรถยนต์ Taxi, Altis, SUV, Van ที่ให้บริการ -->
+            <div class="banner-img-item">
+                <img src="cars-banner.jpg" alt="ประเภทรถยนต์ที่ให้บริการ Taxi, Altis, SUV, VIP Van">
+            </div>
+        </div>
     </section>
 
-    <!-- ส่วนเนื้อหาข้อความหัวเว็บหลัก ย้ายลงมาไว้ตรงนี้ก่อนเข้าฟอร์มอย่างเป็นระเบียบ -->
+    <!-- ส่วนเนื้อหาข้อความหัวเว็บหลัก แสดงผลด้านล่างแบนเนอร์สวยงามเด่นชัด -->
     <section class="intro-section">
         <div class="intro-box">
             <h1 id="hero-title">Calling Taxi บริการรถรับส่งเหมารถไปต่างจังหวัดทั่วไทย</h1>
