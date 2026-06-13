@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calling Taxi - บริการเรียกแท็กซี่ 24 ชั่วโมง</title>
-    <!-- นำเข้า Font สวยๆ จาก Google Fonts -->
+    <title>You have a trip I have a Car - Calling Taxi</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -27,10 +26,13 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: #000;
             text-decoration: none;
@@ -54,7 +56,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1494959764136-6be9eb3c261e?auto=format&fit=crop&q=80&w=1470') no-repeat center center/cover;
-            height: 60vh;
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,7 +67,7 @@
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: 38px;
             margin-bottom: 10px;
         }
 
@@ -75,24 +77,39 @@
             font-weight: 300;
         }
 
-        /* Booking Form */
-        .booking-container {
-            max-width: 500px;
-            width: 90%;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: -50px auto 50px auto; /* ให้กล่องเหลื่อมขึ้นไปบน Hero */
+        /* Booking & Contact Section */
+        .main-container {
+            max-width: 1100px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             position: relative;
             z-index: 10;
         }
 
-        .booking-container h2 {
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                margin-top: 20px;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
             margin-bottom: 20px;
             font-size: 22px;
             color: #222;
             text-align: center;
+            border-bottom: 3px solid #fbc02d;
+            padding-bottom: 10px;
         }
 
         .form-group {
@@ -110,7 +127,7 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 16px;
             outline: none;
         }
@@ -127,7 +144,7 @@
             padding: 14px;
             font-size: 18px;
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -136,19 +153,86 @@
             background-color: #f9a825;
         }
 
+        /* Contact Channels */
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .btn-line { background-color: #06C755; }
+        .btn-line:hover { background-color: #05b04b; }
+        .btn-phone { background-color: #d32f2f; }
+        .btn-phone:hover { background-color: #b71c1c; }
+
+        /* QR Codes Display */
+        .qr-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .qr-box {
+            background: #fcfcfc;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .qr-box p {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .qr-box span {
+            font-size: 12px;
+            color: #666;
+            display: block;
+        }
+
+        .qr-image-placeholder {
+            width: 100%;
+            height: 140px;
+            background-color: #eaedf2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #888;
+            border-radius: 4px;
+            border: 2px dashed #ccc;
+        }
+
         /* Features Section */
         .features {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         .feature-box {
             flex: 1;
-            min-width: 250px;
+            min-width: 280px;
             background: white;
             padding: 20px;
             margin: 10px;
@@ -159,7 +243,7 @@
 
         .feature-box h3 {
             margin-bottom: 10px;
-            color: #fbc02d;
+            color: #f9a825;
         }
 
         /* Footer */
@@ -175,88 +259,82 @@
 </head>
 <body>
 
-    <!-- ส่วนหัวเว็บไซต์ -->
     <header>
-        <a href="#" class="logo">Calling<span>TAXI</span></a>
+        <a href="#" class="logo">You have a trip I have a Car</a>
         <nav>
             <a href="#booking">จองรถ</a>
-            <a href="#features">บริการของเรา</a>
-            <a href="tel:021234567" style="font-weight: 600; color: #d32f2f;">📞 โทรเลย</a>
+            <a href="tel:0852242135">📞 โทรเลย</a>
         </nav>
     </header>
 
-    <!-- ส่วนต้อนรับ (Hero) -->
     <section class="hero">
-        <h1>เรียกรถแท็กซี่ วางใจเรา</h1>
-        <p>บริการรวดเร็ว ปลอดภัย ราคามาตรฐาน ไปได้ทุกที่ตลอด 24 ชั่วโมง</p>
+        <h1>You have a trip, I have a Car</h1>
+        <p>บริการรถแท็กซี่นำเที่ยว รับ-ส่งสนามบิน และเดินทางไปต่างจังหวัดทั่วไทย 24 ชั่วโมง</p>
     </section>
 
-    <!-- ฟอร์มจองรถ -->
-    <div class="booking-container" id="booking">
-        <h2>🚕 จองรถแท็กซี่ออนไลน์</h2>
-        <form id="taxiForm" onsubmit="bookTaxi(event)">
-            <div class="form-group">
-                <label for="pickup">จุดรับผู้โดยสาร</label>
-                <input type="text" id="pickup" placeholder="ระบุสถานที่รับ หรือที่อยู่ของคุณ" required>
+    <div class="main-container" id="booking">
+        
+        <div class="card">
+            <h2>🚕 จองรถแท็กซี่ออนไลน์</h2>
+            <form id="taxiForm" onsubmit="bookTaxi(event)">
+                <div class="form-group">
+                    <label for="pickup">จุดรับผู้โดยสาร</label>
+                    <input type="text" id="pickup" placeholder="ระบุสถานที่รับ หรือชื่อโรงแรม/สนามบิน" required>
+                </div>
+                <div class="form-group">
+                    <label for="dropoff">จุดหมายปลายทาง</label>
+                    <input type="text" id="dropoff" placeholder="ระบุสถานที่ปลายทาง หรือจังหวัด" required>
+                </div>
+                <div class="form-group">
+                    <label for="car-type">ประเภทรถที่ต้องการ</label>
+                    <select id="car-type">
+                        <option value="standard">รถเก๋งทั่วไป (4 ที่นั่ง)</option>
+                        <option value="large">รถคันใหญ่ / SUV (7 ที่นั่ง)</option>
+                        <option value="van">รถตู้ VIP / Van</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">เบอร์โทรศัพท์ติดต่อ</label>
+                    <input type="tel" id="phone" value="085-2242135" required>
+                </div>
+                <button type="submit" class="btn-submit">ส่งข้อมูลเรียกรถ</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>💬 ติดต่อเราโดยตรง</h2>
+            <div class="contact-methods">
+                <a href="https://lin.ee/98iQdw6" target="_blank" class="btn-contact btn-line">
+                    🟢 กดเพื่อเพิ่มเพื่อนใน LINE (คลิกเลย)
+                </a>
+                <a href="tel:0852242135" class="btn-contact btn-phone">
+                    📞 โทรสายด่วน: 085-2242135
+                </a>
             </div>
-            <div class="form-group">
-                <label for="dropoff">จุดหมายปลายทาง</label>
-                <input type="text" id="dropoff" placeholder="ระบุสถานที่ปลายทาง" required>
+
+            <div class="qr-grid">
+                <div class="qr-box">
+                    <div class="qr-image-placeholder">[ QR WeChat ]</div>
+                    <p style="color: #07C160;">WeChat</p>
+                    <span>ID: 0852242135</span>
+                </div>
+                <div class="qr-box">
+                    <div class="qr-image-placeholder">[ QR WhatsApp ]</div>
+                    <p style="color: #25D366;">WhatsApp</p>
+                    <span>+66 85 224 2135</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="car-type">ประเภทรถที่ต้องการ</label>
-                <select id="car-type">
-                    <th:option value="standard">แท็กซี่ทั่วไป (4 ที่นั่ง)</th:option>
-                    <th:option value="large">แท็กซี่คันใหญ่ (7 ที่นั่ง)</th:option>
-                    <th:option value="premium">รถพรีเมียม / VIP</th:option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="phone">เบอร์โทรศัพท์ติดต่อ</label>
-                <input type="tel" id="phone" placeholder="ตัวอย่าง: 0812345678" required pattern="[0-9]{9,10}">
-            </div>
-            <button type="submit" class="btn-submit">เรียกรถตอนนี้</button>
-        </form>
+            <p style="font-size: 13px; color: #777; text-align: center; margin-top: 15px;">
+                * สำหรับลูกค้าชาวต่างชาติ สามารถสแกนคิวอาร์โค้ด WeChat หรือ WhatsApp ด้านบนเพื่อแชทคุยได้ทันที
+            </p>
+        </div>
+
     </div>
 
-    <!-- ส่วนจุดเด่นบริการ -->
-    <section class="features" id="features">
+    <section class="features">
         <div class="feature-box">
-            <h3>⏱️ มาถึงไว</h3>
-            <p>มีเครือข่ายรถแท็กซี่กระจายอยู่ทั่วทุกพื้นที่ พร้อมไปรับคุณภายใน 15 นาที</p>
+            <h3>⏱️ บริการ 24 ชั่วโมง</h3>
+            <p>ไม่ว่าจะไปสนามบินไฟลท์ดึก หรือเดินทางเร่งด่วน พร้อมให้บริการตลอดเวลา</p>
         </div>
         <div class="feature-box">
-            <h3>💰 ราคาเป็นธรรม</h3>
-            <p>คิดราคาตามมิเตอร์มาตรฐาน หรือราคาเหมาจ่ายตามที่ตกลงกัน ไม่มีบวกเพิ่มหน้างาน</p>
-        </div>
-        <div class="feature-box">
-            <h3>🛡️ ปลอดภัย 100%</h3>
-            <p>คนขับทุกคนผ่านการตรวจสอบประวัติอาชญากรรม และได้รับการอบรมบริการอย่างดี</p>
-        </div>
-    </section>
-
-    <!-- ส่วนท้ายเว็บ -->
-    <footer>
-        <p>&copy; 2026 Calling Taxi Service. All rights reserved.</p>
-    </footer>
-
-    <!-- ส่วนทำงานของ JavaScript สำหรับปุ่มกด -->
-    <script>
-        function bookTaxi(event) {
-            event.preventDefault(); // ป้องกันหน้าเว็บรีเฟรช
-            
-            const pickup = document.getElementById('pickup').value;
-            const dropoff = document.getElementById('dropoff').value;
-            const carType = document.getElementById('car-type').value;
-            const phone = document.getElementById('phone').value;
-
-            // แจ้งเตือนแบบจำลอง (ในอนาคตเชื่อมต่อหลังบ้านเพื่อบันทึกข้อมูลได้)
-            alert(`🎉 ระบบได้รับข้อมูลเรียกรถเรียบร้อยแล้ว!\n\n📍 จุดรับ: ${pickup}\n🏁 จุดส่ง: ${dropoff}\n📞 เบอร์ติดต่อ: ${phone}\n\nเจ้าหน้าที่จะติดต่อกลับภายใน 5 นาทีครับ`);
-            
-            // รีเซ็ตฟอร์ม
-            document.getElementById('taxiForm').reset();
-        }
-    </script>
-
-</body>
-</html>
+            <h3>🗺️ น
