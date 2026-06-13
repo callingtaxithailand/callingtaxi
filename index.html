@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calling Taxi - บริการเรียกรถแท็กซี่ 24 ชั่วโมง</title>
+    <!-- นำเข้า Font สวยๆ จาก Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -60,11 +61,10 @@
             margin-left: 5px;
         }
 
-        /* ส่วนควบคุมปุ่มฝั่งขวา */
+        /* ส่วนควบคุมปุ่มฝั่งขวา (เหลือเฉพาะปุ่มสลับภาษา) */
         .header-right {
             display: flex;
             align-items: center;
-            gap: 15px;
         }
 
         /* ปุ่มสลับภาษา TH / EN */
@@ -72,7 +72,7 @@
             background-color: #000;
             color: #fff;
             border: 2px solid #000;
-            padding: 6px 12px;
+            padding: 6px 16px;
             font-size: 14px;
             font-weight: 600;
             border-radius: 6px;
@@ -83,24 +83,6 @@
         .lang-btn:hover {
             background-color: #fff;
             color: #000;
-        }
-
-        /* ปุ่มโทรสายด่วนด้านบนขวา */
-        .header-phone {
-            background-color: #d32f2f;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            white-space: nowrap;
-        }
-
-        .header-phone:hover {
-            background-color: #b71c1c;
         }
 
         /* แถบเมนูย่อย (วางอยู่ใต้กรอบสีเหลือง) */
@@ -428,29 +410,34 @@
 </head>
 <body>
 
+    <!-- แถบเมนูกรอบสีเหลืองด้านบนสุด (เอาปุ่มโทรสายด่วนออกแล้ว เหลือเฉพาะปุ่มเปลี่ยนภาษา) -->
     <header>
         <a href="#" class="header-logo-wrapper">
             <img src="logo.png" alt="Premium Ride Service Logo">
             <div class="logo-text">Calling<span>TAXI</span></div>
         </a>
         <div class="header-right">
+            <!-- ปุ่มสลับภาษา -->
             <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">EN</button>
-            <a href="tel:0852242135" class="header-phone" id="text-hotline">📞 โทรสายด่วน: 085-2242135</a>
         </div>
     </header>
 
+    <!-- แถบเมนูย่อย (อยู่ใต้กรอบสีเหลือง) -->
     <div class="sub-nav">
         <a href="#booking" id="nav-booking">จองรถออนไลน์</a>
         <a href="#fleet" id="nav-fleet">ประเภทรถที่ให้บริการ</a>
     </div>
 
+    <!-- ส่วนหัวโปรโมทหน้าเว็บ -->
     <section class="hero">
         <h1 id="hero-title">Calling Taxi</h1>
         <p id="hero-desc">บริการรถรับส่ง เดินทางท่องเที่ยวทั่วไทย และบริการรถเหมา 24 ชั่วโมง</p>
     </section>
 
+    <!-- คอนเทนต์หลัก (ฟอร์ม & ติดต่อ) -->
     <div class="main-container" id="booking">
         
+        <!-- แบบฟอร์มกรอกข้อมูลเรียกแท็กซี่ -->
         <div class="card">
             <h2 id="form-title">🚕 จองรถแท็กซี่ออนไลน์</h2>
             <form id="taxiForm" onsubmit="bookTaxi(event)">
@@ -478,6 +465,7 @@
             </form>
         </div>
 
+        <!-- ช่องทางการติดต่อโดยตรง -->
         <div class="card">
             <h2 id="contact-title">💬 ช่องทางติดต่อตรง</h2>
             
@@ -493,11 +481,13 @@
             <div class="qr-section-title" id="qr-title">✨ หรือสแกนผ่านแอปพลิเคชัน (You have a trip I have a Car)</div>
             
             <div class="qr-grid">
+                <!-- WeChat -->
                 <div class="qr-box">
                     <img src="Screenshot_20260613_065900_WeChat.jpg" alt="WeChat QR">
                     <p style="color: #07C160;">WeChat</p>
                     <span>Tel: 0852242135</span>
                 </div>
+                <!-- WhatsApp -->
                 <div class="qr-box">
                     <img src="Screenshot_20260613_065846_WhatsApp.jpg" alt="WhatsApp QR">
                     <p style="color: #25D366;">WhatsApp</p>
@@ -507,10 +497,12 @@
         </div>
     </div>
 
+    <!-- โซนแสดงรูปรถที่ให้บริการ -->
     <div class="fleet-container" id="fleet">
         <h2 class="fleet-title" id="fleet-title">🚖 รถยนต์ที่เราเปิดให้บริการ</h2>
         <div class="fleet-grid">
             
+            <!-- คันที่ 1: Sedan Altis -->
             <div class="car-card">
                 <div class="car-img-wrapper">
                     <img src="altis.png" alt="Toyota Altis Taxi">
@@ -521,6 +513,7 @@
                 </div>
             </div>
 
+            <!-- คันที่ 2: SUV -->
             <div class="car-card">
                 <div class="car-img-wrapper">
                     <img src="suv.png" alt="SUV Car">
@@ -531,6 +524,7 @@
                 </div>
             </div>
 
+            <!-- คันที่ 3: Van -->
             <div class="car-card">
                 <div class="car-img-wrapper">
                     <img src="van_03.png" alt="VIP Van">
@@ -544,6 +538,7 @@
         </div>
     </div>
 
+    <!-- ส่วนจุดเด่นบริการ -->
     <section class="features">
         <div class="feature-box">
             <h3 id="f1-title">⏱️ บริการ 24 ชั่วโมง</h3>
@@ -559,10 +554,12 @@
         </div>
     </section>
 
+    <!-- ส่วนแสดงแบนเนอร์ก่อนถึง Footer -->
     <div class="banner-container">
         <img src="banner728_90.jpg" alt="Thailand Travel Tour Banner">
     </div>
 
+    <!-- ส่วนท้ายเว็บ (Footer พร้อมโลโก้) -->
     <footer>
         <div class="footer-logo">
             <img src="logo.png" alt="Premium Ride Service Footer Logo">
@@ -671,7 +668,6 @@
             const t = translations[lang];
 
             document.getElementById('langBtn').innerText = lang === 'th' ? 'EN' : 'TH';
-            document.getElementById('text-hotline').innerText = t.hotline;
             document.getElementById('btn-call-direct').innerText = t.hotline;
             document.getElementById('nav-booking').innerText = t.navBooking;
             document.getElementById('nav-fleet').innerText = t.navFleet;
