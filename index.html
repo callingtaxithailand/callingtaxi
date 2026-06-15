@@ -127,10 +127,10 @@
 
     <div class="py-6 bg-gray-50 border-t border-gray-100 flex flex-col items-center gap-6 w-full">
         
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-16">
-            <div id="histats_counter_old" class="flex justify-center items-center"></div>
+        <div class="flex flex-row items-center justify-center gap-8 md:gap-16">
+            <div id="histats_counter_1" class="min-h-[30px]"></div>
             
-            <div id="histats_counter_new" class="flex justify-center items-center"></div>
+            <div id="histats_counter_2" class="min-h-[30px]"></div>
         </div>
         
         <div class="w-full max-w-2xl overflow-x-auto flex justify-center px-4 scrollbar-none">
@@ -146,14 +146,22 @@
     </footer>
 
     <script type="text/javascript">
-        // สคริปต์ทำงานของ Histats ตัวเก่า (ไอดี 5032891)
+        // เรียกใช้ Histats ตัวที่ 1 (5032891)
         var _Hasync= _Hasync|| [];
         _Hasync.push(['Histats.start', '1,5032891,4,430,112,75,00011111']);
         _Hasync.push(['Histats.fasi', '1']);
         _Hasync.push(['Histats.track_hits', '']);
         _Hasync.push(['Histats.framed_page', '']);
 
-        // สคริปต์ทำงานของ Histats ตัวใหม่ (ไอดี 5033195)
+        (function() {
+            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+            hs.src = ('//s10.histats.com/js15_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();
+    </script>
+    
+    <script type="text/javascript">
+        // แยกตัวแปรตัวควบคุมออกเป็นอีกชุดเพื่อใช้กับตัวที่ 2 (5033195)
         var _Hasync2 = _Hasync2 || [];
         _Hasync2.push(['Histats.start', '1,5033195,4,4012,112,61,00011111']);
         _Hasync2.push(['Histats.fasi', '1']);
@@ -161,26 +169,27 @@
         _Hasync2.push(['Histats.framed_page', '']);
 
         (function() {
-            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-            hs.src = ('//s10.histats.com/js15_as.js');
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-            
-            // ผูกตัวนับเข้ากับตำแหน่งที่ตั้งไว้ตาม ID ใหม่ที่สร้างขึ้นเพื่อให้อยู่ข้างกัน
-            window.addEventListener('load', function() {
-                var cOld = document.getElementById('histats_counter_old');
-                var cNew = document.getElementById('histats_counter_new');
-                
-                // ย้ายก้อนแสดงผลของ Histats แต่ละตัวเข้าประจำตำแหน่งกล่องของตัวเอง
-                if(document.getElementById('histats_counter')) {
-                    // ป้องกันความสับสนของโค้ดสคริปต์เดิมจากตัวเซิร์ฟเวอร์หลัก
-                    cOld.appendChild(document.getElementById('histats_counter'));
-                }
-            });
+            var hs2 = document.createElement('script'); hs2.type = 'text/javascript'; hs2.async = true;
+            hs2.src = ('//s10.histats.com/js15_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs2);
         })();
+
+        // ระบบจับคู่รูปภาพสถิติโยนเข้ากล่องเลข 1 และเลข 2 เมื่อโหลดเสร็จ
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var checkExist = setInterval(function() {
+               var histatElements = document.querySelectorAll('a[href*="histats.com/viewStats"]');
+               if (histatElements.length >= 2) {
+                  document.getElementById('histats_counter_1').appendChild(histatElements[0].parentNode);
+                  document.getElementById('histats_counter_2').appendChild(histatElements[1].parentNode);
+                  clearInterval(checkExist);
+               }
+            }, 100); 
+        });
     </script>
+
     <noscript>
-        <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5032891&101" alt="Histats Old" border="0"></a>
-        <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5033195&101" alt="Histats New" border="0"></a>
+        <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5032891&101" alt="" border="0"></a>
+        <a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5033195&101" alt="" border="0"></a>
     </noscript>
 
     <script>
