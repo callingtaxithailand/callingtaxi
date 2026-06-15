@@ -135,9 +135,10 @@
         </div>
     </main>
 
-    <!-- Counters Section (Histats & Flag Counter) -->
+    <!-- ZONE: โค้ดสถิติต่างๆ ก่อนถึง Footer -->
     <div class="py-6 bg-gray-50 border-t border-gray-100 flex flex-col items-center gap-4">
-        <!-- Histats Counter Counter Location -->
+        
+        <!-- Histats.com (div with counter) -->
         <div id="histats_counter"></div>
         
         <!-- Flag Counter -->
@@ -152,14 +153,16 @@
         <p class="text-gray-500">All rights reserved.</p>
     </footer>
 
-    <!-- Histats Scripts Setup -->
+    <!-- Histats Scripts Setup (Async) -->
     <script type="text/javascript">
         var _Hasync= _Hasync|| [];
+        // สคริปต์ไอดีที่ 1 (5033195)
         _Hasync.push(['Histats.start', '1,5033195,4,4012,112,61,00011111']);
         _Hasync.push(['Histats.fasi', '1']);
         _Hasync.push(['Histats.track_hits', '']);
         _Hasync.push(['Histats.framed_page', '']);
         
+        // สคริปต์ไอดีที่ 2 (5032891)
         _Hasync.push(['Histats.start', '1,5032891,4,430,112,75,00011111']);
         _Hasync.push(['Histats.fasi', '1']);
         _Hasync.push(['Histats.track_hits', '']);
@@ -181,7 +184,7 @@
         const content = {
             TH: { hero: "Calling Taxi<br><span class='text-gray-600 text-xl md:text-2xl font-medium mt-1 block'>บริการรถรับส่งเหมารถทั่วไทย</span>", book: "⚡ จองรถด่วน 24 ชั่วโมง ⚡", fleet1: "แท็กซี่ทั่วไป (Sedan)", fleet2: "รถยนต์อเนกประสงค์ (SUV)", fleet3: "รถตู้ VIP (Van)", h1T: "⏱️ บริการ 24 ชั่วโมง", h1D: "สแตนบายด์รอรับคุณทุกที่ ทุกเวลา ไม่ว่าจะไปสนามบินหรือเดินทางเร่งด่วน", h2T: "🗺️ เหมารถนำเที่ยว", h2D: "จัดทริปส่วนตัว ท่องเที่ยวต่างจังหวัด ไปเที่ยว ไปกลับ หรือค้างคืนเราพร้อมบริการ", h3T: "🛡️ เดินทางปลอดภัย", h3D: "คนขับมืออาชีพ สุภาพ ชำนาญเส้นทาง และดูแลผู้โดยสารตลอดการเดินทาง" },
             EN: { hero: "Calling Taxi<br><span class='text-gray-600 text-xl md:text-2xl font-medium mt-1 block'>Private Thailand Taxi Service</span>", book: "⚡ 24/7 Express Booking ⚡", fleet1: "Standard Taxi (Sedan)", fleet2: "SUV Service", fleet3: "VIP Van Service", h1T: "⏱️ 24/7 Service", h1D: "Always available anytime, anywhere for your airport transfers or urgent trips.", h2T: "🗺️ Private Tours", h2D: "Customized private trips, multi-day tours, round-trips or one-way services.", h3T: "🛡️ Safe Travel", h3D: "Professional, polite drivers with extensive route knowledge for your safety." },
-            CN: { hero: "Calling Taxi<br><span class='text-gray-600 text-xl md:text-2xl font-medium mt-1 block'>泰国包车接送服务</span>", book: "⚡ 24小时 快速预订 ⚡", fleet1: "普通出租车 (Sedan)", fleet2: "SUV 舒适型", fleet3: "VIP 商务车 (Van)", h1T: "⏱️ 24小时服务", h1D: "随时待命，无论机场接送还是紧急行程，随时为您服务。", h2T: "🗺️ 包车旅游", h2D: "私人定制行程，周边游、长途包车或往返接送，为您提供优质服务。", h3T: "🛡️ 安全出行", h3D: "专业司机，礼貌周到，熟悉路线，全程保障您的安全。" }
+            CN: { hero: "Calling Taxi<br><span class='text-gray-600 text-xl md:text-2xl font-medium mt-1 block'>泰国包车接送服务</span>", book: "⚡ 24小时 快速预订 ⚡", fleet1: "普通出租车 (Sedan)", fleet2: "SUV 舒适型", fleet3: "VIP 商务车 (Van)", h1T: "⏱️ 24小时服务", h1D: "随时待命，无论机场接送还是紧急行程，随时为您服务。", h2T: "🗺️ 包车旅游", h2D: "私人定制行程，周边游、长途包车 or 往返接送，为您提供优质服务。", h3T: "🛡️ 安全出行", h3D: "专业司机，礼貌周到，熟悉路线，全程保障您的安全。" }
         };
 
         function changeLanguage(lang) {
